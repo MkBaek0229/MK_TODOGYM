@@ -6,8 +6,19 @@ import Workout from "./Workout.js";
 
 
 export default function App({ $target }){
-    new Title({$target})
-    new Workout({$target})
-    new Record({$target})
+    const initData = ["벤치프레스", "스쿼트", "데드리프트"]
+
+    const onSubmit = (text) => {
+        const nextState = [...Recordtodo.state, text]
+        
+        Recordtodo.setState(nextState);
+        console.log(Recordtodo.state)
+    }
+
+
+
+    new Title({$target});
+    new Workout({$target , onSubmit});
+    const Recordtodo = new Record({$target, initData});
 
 }

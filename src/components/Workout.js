@@ -1,26 +1,21 @@
 // https://developer.mozilla.org/ko/docs/Web/HTML/Element/input/checkbox
-export default function Workout({ $target }){
+export default function Workout({ $target , onSubmit}){
     const $form = document.createElement("form")
-    $target.appendChild($form)
-    
+    $target.appendChild($form);
+
     $form.innerHTML = `
-                <ul>
-                    <li><input type="checkbox" id="benchpress" name="benchpress"/>
-                    <label for="scales">상체</label>
-                    </li>
-                    <li><input type="checkbox" id="pullup" name="pullup"/>
-                    <label for="scales">하체</label>
-                    </li>
-                </ul>
-                <button id="workstart" type="submit">시작하기</button>
+        <input type="text" name = "todo" />
+        <button>버튼</button>
     `
-    $form.addEventListener("submit", e => {
+    $form.addEventListener("submit" , e => {
         e.preventDefault();
-        const text = e.target.value;
-        console.log(text);
+        const $input = $form.querySelector("input");
+        const text = $input.value;
 
-
+        if(text.length > 1) {
+            onSubmit(text);
+            $input.value = '';
+        }
     })
-            
-
+    
 }
